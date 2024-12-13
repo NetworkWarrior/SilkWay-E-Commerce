@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 def cart_summary(request):
-    pass
+    return render(request, 'cart/cart-summary.html')
+
 
 def cart_add(request):
     pass
