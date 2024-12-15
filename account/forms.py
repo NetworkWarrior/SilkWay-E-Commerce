@@ -24,3 +24,9 @@ class CreateUserForm(UserCreationForm):
         if len(email) >= 350:
             raise forms.ValidationError('This email is too long')
         return email
+    
+
+#Login form
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput())
+    password = forms.CharField(widget=PasswordInput())
