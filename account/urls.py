@@ -5,9 +5,9 @@ urlpatterns = [
     path('register', views.register, name='register'),
     
     #email verification URL's
-    path('email-verification', views.email_verification, name='email-verification'),
-    path('email_sent', views.email_sent, name='email_sent'),
-    path('email_success', views.email_succes, name='email_success'),
-    path('email_failed', views.email_failed, name='email_failed'),
+    path('email-verification/<str:uidb64>/<str:token>/', views.email_verification, name='email-verification'),
+    path('email-verification-sent', views.email_verification_sent, name='email-verification-sent'),
+    path('email-verification-success', views.email_verification_succes, name='email-verification-success'),
+    path('email-verification-failed', views.email_verification_failed, name='email-verification-failed'),
 ]
 
