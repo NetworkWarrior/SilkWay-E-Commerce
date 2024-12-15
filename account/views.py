@@ -13,3 +13,20 @@ def register(request):
     context = {'form':form}
 
     return render(request, 'account/registration/register.html', context)
+
+
+def email_verification(request):
+    pass
+
+
+def email_sent(request):
+    pass
+
+
+def email_succes(request):
+    pass
+
+
+def email_failed(request):
+    pass
+
