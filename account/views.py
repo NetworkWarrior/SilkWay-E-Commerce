@@ -76,7 +76,7 @@ def my_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                return redirect("dashbaord")
+                return redirect("dashboard")
             
     context = {'form':form}
     return render(request, 'account/my-login.html', context)
@@ -92,6 +92,10 @@ def user_logout(request):
 def dashboard(request):
     return render(request, 'account/dashboard.html')
 
+
+@login_required(login_url='my-login')
+def profile(request):
+    return render(request, 'account/profile.html')
 
 @login_required(login_url='my-login')
 def profile_management(request):    

@@ -10,24 +10,10 @@
 <body>
     <br>
     <div class='container big-white shadow-md p-5 form-layout'>
-        <h4>Welcome! {{user}}</h4>
+        <h4>Track your orders!</h4>
         <hr>
-        <li>Track  your orders</li>
-        <li>Manage your account</li>
+        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{%url 'store'%}"> My orders </a>
         <br>
-        <br>
-    </div>
-    <br>
-    <div class='container big-white shadow-md p-5 form-layout'>
-        <h4>Track your orders</h4>
-        <hr>
-        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{%url 'user-logout'%}"> My orders </a>
-    </div>
-    <br>
-    <div class='container big-white shadow-md p-5 form-layout'>
-        <h4>Manage your account</h4>
-        <hr>
-        <a class="btn btn-primary navbar-btn text-white" type="button"  href="{%url 'delete-account'%}"> Delete </a> <a class="btn btn-danger navbar-btn text-white" type="button"  href="{%url 'user-logout'%}"> Logout </a>
     </div>
     <br>
 

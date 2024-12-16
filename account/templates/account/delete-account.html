@@ -13,16 +13,17 @@
 
 <body>
         <br>
-        <div class='container big-white shadow-md p-5 form-layout'>
-            <h3>Delete your account</h3>
-            <br>
-            <br>
+        <div class='container big-white shadow-md p-5 form-layout text-center'>
+            <h3>Account deletion</h3>
+            <hr>
+            <p>Are you sure that you want to delete your account?</p>
             <form method='POST' autocomplete='off'>
                 {% csrf_token %}
-                <p>Are you sure that you want to delete your account</p>
-                <button type='submit' class="btn btn-danger btn-lg w-100 btn-block p-2">&nbsp;Delete</button>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a  type="button"  href="{%url 'delete-account'%}"><i class="me-5 fa fa-check fa-3x" aria-hidden="true"></i></a> <a class=" ms-5 btn btn-danger navbar-btn text-white" type="button"  href="{%url 'profile'%}"> <i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
+                </div>
+                
             </form>
         </div>
-        <br>
 </body>
 {%endblock%}
