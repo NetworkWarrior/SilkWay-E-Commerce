@@ -146,3 +146,6 @@ EMAIL_USE_TLS = 'True'
 
 EMAIL_HOST_USER = 'silk.way.corporation1@gmail.com'
 EMAIL_HOST_PASSWORD = 'amxpmbrcbzxhbbzm'
+
+#Allow Paypal Popups
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
