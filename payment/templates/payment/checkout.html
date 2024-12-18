@@ -151,6 +151,7 @@
             },
             onInit: function(data, actions){
                 actions.disable();
+                //complete order without shipping
                 document.querySelectorAll('.validate').forEach(item => {
                     item.addEventListener('keyup', event => {
                         //  The required fields are filled out
@@ -175,6 +176,26 @@
                         }
                     });
                 });
+                //complete order with shipping
+                var order_verified = 'Yes';
+                        function checkInputs(){
+                            $(':input[required]').each(function(){
+                                if($(this).val() == ''){
+                                    // The required fields are empty
+                                    return order_verified = 'No';
+                                }
+                            });
+                            return order_verified;
+                        }
+                        var isOrderVerified = checkInputs()
+                        if(isOrderVerified === 'Yes')
+                        {
+                            actions.enable();
+                        }
+                        else
+                        {
+                            actions.disable();
+                        }
             },
 
 
@@ -196,7 +217,7 @@
                     purchase_units: [
                         {
                             amount: {
-                                value: "88.44"
+                                value: total_price
                             }
                         }
                     ]
@@ -214,8 +235,35 @@
                 const captureOrderHandler = (details) => {
                     const payerName = details.payer.name.given_name;
                     console.log('Transaction completed');
+                    
+                    $.ajax({
     
-    
+                        type: 'POST',
+                        url: '{% url "complete-order" %}',
+                        data: {
+                            name: $('#name').val(),
+                            email: $('#email').val(),
+                            address1: $('#address1').val(),
+                            address2: $('#address2').val(),
+                            city: $('#city').val(),
+                            state: $('#state').val(),
+                            zipcode: $('#zipcode').val(),
+                            csrfmiddlewaretoken: "{{csrf_token}}",
+                            action: 'post'
+                        },
+            
+                        success: function(json){
+            
+                            //console.log(json)
+                            window.location.replace("{% url 'payment-success' %}");
+                        },
+            
+                        error: function(xhr, errmsg, err){
+                            window.location.replace("{%url 'payment-failed'%}");
+            
+                        }
+            
+                    });
                 };
     
                 return actions.order.capture().then(captureOrderHandler);
@@ -240,47 +288,6 @@
             .catch((err) => {
                 console.error('PayPal Buttons failed to render');
             });
-
-
-
-
-        //Complete checkout
-        /*
-        $(document).on('submit', function(e){
-
-            e.preventDefault();
-    
-            $.ajax({
-    
-                type: 'POST',
-                url: '{% url "complete-order" %}',
-                data: {
-                    name: $('#name').val(),
-                    email: $('#email').val(),
-                    address1: $('#address1').val(),
-                    address2: $('#address2').val(),
-                    city: $('#city').val(),
-                    state: $('#state').val(),
-                    zipcode: $('#zipcode').val(),
-                    csrfmiddlewaretoken: "{{csrf_token}}",
-                    action: 'post'
-                },
-    
-                success: function(json){
-    
-                    //console.log(json)
-                    window.location.replace("{% url 'payment-success' %}");
-                },
-    
-                error: function(xhr, errmsg, err){
-                    window.location.replace("{%url 'payment-failed'%}");
-    
-                }
-    
-            });
-    
-    
-        })*/
 
    </script>
 
